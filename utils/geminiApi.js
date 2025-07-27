@@ -1,14 +1,22 @@
+// System prompt for mental health chatbot
+const SYSTEM_PROMPT = `
+You are a supportive mental health chatbot. Respond with empathy, encouragement, and helpful advice for mental well-being. 
+Do not give medical diagnoses or replace professional help. If a user is in crisis, encourage them to reach out to a mental health professional or helpline.
+`;
 import axios from 'axios';
 import { GEMINI_API_KEY } from '@env';
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent';
 
 export const fetchGeminiResponse = async (userMessage) => {
+  // Prepend the system prompt to the user message
+  const prompt = `${SYSTEM_PROMPT}\nUser: ${userMessage}`;
   try {
+
     const response = await axios.post(
       GEMINI_URL,
       {
-        contents: [{ parts: [{ text: userMessage }] }],
+        contents: [{ parts: [{ text: prompt }] }],
       },
       {
         headers: {

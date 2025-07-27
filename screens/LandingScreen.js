@@ -24,7 +24,7 @@ const LandingScreen = ({ navigation }) => {
         <View style={styles.iconWrap}>
           <MaterialCommunityIcons name="chat-processing" size={64} color={theme.accent} />
         </View>
-        <Text style={[styles.title, { color: theme.text }]}>Gemini Chatbot</Text>
+        <Text style={[styles.title, { color: theme.text }]}>Mental Health Chatbot</Text>
         <Text style={[styles.subtitle, { color: theme.text, opacity: 0.7 }]}>Connect, chat, and explore AI conversations</Text>
         <View style={styles.spacer} />
         <Button title="Login" onPress={() => navigation.navigate('Login')} color={theme.accent} />

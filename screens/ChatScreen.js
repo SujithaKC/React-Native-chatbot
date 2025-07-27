@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   View,
+  Text,
   TextInput,
   Button,
   FlatList,
@@ -88,7 +89,16 @@ const ChatScreen = ({ navigation }) => {
 
   if (initializing) {
     return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background }]}> 
+      <View
+        style={[
+          styles.container,
+          {
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: theme.background,
+          },
+        ]}
+      >
         <ActivityIndicator size="large" color={theme.accent} />
       </View>
     );
@@ -97,8 +107,22 @@ const ChatScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={[styles.container, { backgroundColor: theme.background }]}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
+      {/* ✅ Disclaimer for mental health support */}
+      <Text
+        style={{
+          color: 'gray',
+          fontSize: 12,
+          margin: 10,
+          textAlign: 'center',
+        }}
+      >
+        This chatbot provides supportive conversation but is not a substitute
+        for professional mental health care. If you are in crisis, please
+        contact a mental health professional or helpline.
+      </Text>
+
       <FlatList
         data={messages}
         keyExtractor={(_, index) => index.toString()}
@@ -107,10 +131,30 @@ const ChatScreen = ({ navigation }) => {
         )}
         contentContainerStyle={{ paddingVertical: 20 }}
       />
-      {loading && <ActivityIndicator size="small" color={theme.accent} style={{ marginBottom: 10 }} />}
-      <View style={[styles.inputContainer, { borderColor: theme.border, backgroundColor: theme.card }] }>
+
+      {loading && (
+        <ActivityIndicator
+          size="small"
+          color={theme.accent}
+          style={{ marginBottom: 10 }}
+        />
+      )}
+
+      <View
+        style={[
+          styles.inputContainer,
+          { borderColor: theme.border, backgroundColor: theme.card },
+        ]}
+      >
         <TextInput
-          style={[styles.input, { backgroundColor: theme.inputBg, color: theme.text, borderColor: theme.border }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.inputBg,
+              color: theme.text,
+              borderColor: theme.border,
+            },
+          ]}
           value={input}
           onChangeText={setInput}
           placeholder="Type your message..."

@@ -22,7 +22,7 @@ function AppContent() {
           name="Chat"
           component={ChatScreen}
           options={{
-            title: 'Gemini Chat',
+            title: 'Mental Health Chat',
             headerLeft: () => null,
             gestureEnabled: false,
           }}
