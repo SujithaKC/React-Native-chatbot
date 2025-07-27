@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from './theme-context';
 
 const MessageBubble = ({ message, isUser }) => {
+  const theme = useTheme();
   return (
-    <View style={[styles.bubble, isUser ? styles.user : styles.bot]}>
-      <Text style={styles.text}>{message}</Text>
+    <View style={[styles.bubble, isUser ? { backgroundColor: theme.userBubble, alignSelf: 'flex-end' } : { backgroundColor: theme.botBubble, alignSelf: 'flex-start' }] }>
+      <Text style={[styles.text, { color: theme.text }]}>{message}</Text>
     </View>
   );
 };
@@ -16,14 +18,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     borderRadius: 12,
     maxWidth: '80%',
-  },
-  user: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#d0ebff',
-  },
-  bot: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#f1f1f1',
   },
   text: {
     fontSize: 16,
