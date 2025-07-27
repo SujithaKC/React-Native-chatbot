@@ -8,7 +8,7 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const handleLogin = async () => {
     setLoading(true);

@@ -23,7 +23,7 @@ const ChatScreen = ({ navigation }) => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [initializing, setInitializing] = useState(true);
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   // Load chat history for current user
   useEffect(() => {
