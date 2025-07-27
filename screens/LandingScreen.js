@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, Switch, Platform } from 'react-native';
 import { useTheme } from '../components/theme-context';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const GlassCard = ({ children, theme }) => (
   <View style={[
     styles.card,
     {
-      backgroundColor: theme.mode === 'dark' ? 'rgba(35,35,42,0.7)' : 'rgba(255,255,255,0.6)',
+      backgroundColor: theme.mode === 'dark' ? 'rgba(35,35,42,0.7)' : 'rgba(255,255,255,0.7)',
       borderColor: theme.theme.border,
       shadowColor: theme.theme.accent,
     },
@@ -20,10 +21,14 @@ const LandingScreen = ({ navigation }) => {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }] }>
       <GlassCard theme={{ theme, mode }}>
-        <Text style={[styles.title, { color: theme.text }]}>Welcome to Gemini Chatbot</Text>
+        <View style={styles.iconWrap}>
+          <MaterialCommunityIcons name="chat-processing" size={64} color={theme.accent} />
+        </View>
+        <Text style={[styles.title, { color: theme.text }]}>Gemini Chatbot</Text>
+        <Text style={[styles.subtitle, { color: theme.text, opacity: 0.7 }]}>Connect, chat, and explore AI conversations</Text>
         <View style={styles.spacer} />
         <Button title="Login" onPress={() => navigation.navigate('Login')} color={theme.accent} />
-        <View style={styles.spacer} />
+        <View style={styles.spacerSmall} />
         <Button title="Sign Up" onPress={() => navigation.navigate('Signup')} color={theme.accent} />
         <View style={styles.spacer} />
         <View style={styles.row}>
@@ -44,13 +49,17 @@ const LandingScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 10, textAlign: 'center' },
-  spacer: { height: 18 },
+  iconWrap: { alignItems: 'center', marginBottom: 18 },
+  title: { fontSize: 32, fontWeight: 'bold', marginBottom: 8, textAlign: 'center', letterSpacing: 1 },
+  subtitle: { fontSize: 16, textAlign: 'center', marginBottom: 18 },
+  spacer: { height: 22 },
+  spacerSmall: { height: 12 },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10 },
   card: {
-    width: 320,
-    padding: 32,
-    borderRadius: 28,
+    width: 340,
+    paddingVertical: 36,
+    paddingHorizontal: 28,
+    borderRadius: 32,
     borderWidth: 1.5,
     alignItems: 'center',
     shadowOpacity: 0.12,
@@ -62,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LandingScreen; 
+export default LandingScreen;
